@@ -28,7 +28,7 @@ foreach($webhookPublicKeys as $key)
         syslog(LOG_WARNING, "feed-item: FAILED TO GENERATE PUBLIC KEY");
     }
 
-    if(openssl_verify($json, base64_decode($signature), $publicKey, sha512WithRSAEncryption))
+    if(openssl_verify($json, base64_decode($signature), $publicKey, 'sha512WithRSAEncryption'))
     {
         $verified = true;
     }
@@ -48,6 +48,9 @@ $stmt = $db->prepare("INSERT INTO logs(date, logstring) VALUES (?, ?)");
 $stmt->bind_param("is", $now, $json);
 $stmt->execute();
 
+// Convert it into an array for processing
+$payload = json_decode($json, true);
 
 
+file_put_contents('./filename.txt', print_r($payload, true));
 ?>
