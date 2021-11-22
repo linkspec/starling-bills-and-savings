@@ -1,8 +1,8 @@
 <?php
 // Handles inbound starling webhook events
 
-require('config.php');
-require('functions/db.php');
+require('../config.php');
+require('../functions/db.php');
 
 // Get the POST body
 $json = file_get_contents('php://input');
