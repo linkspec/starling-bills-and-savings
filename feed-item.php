@@ -42,7 +42,7 @@ if(!$verified)
 }
 
 
-
+// Log the raw json into the database
 $now = time();
 $stmt = $db->prepare("INSERT INTO logs(date, logstring) VALUES (?, ?)");
 $stmt->bind_param("is", $now, $json);
